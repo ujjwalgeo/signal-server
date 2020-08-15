@@ -476,6 +476,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
 
+    'allauth.socialaccount.providers.google',
+
     # GeoNode
     'geonode',
 )
@@ -1997,3 +1999,25 @@ GEOIP_PATH = os.getenv('GEOIP_PATH', os.path.join(PROJECT_ROOT, 'GeoIPCities.dat
 #This controls if tastypie search on resourches is performed only with titles
 SEARCH_RESOURCES_EXTENDED = strtobool(os.getenv('SEARCH_RESOURCES_EXTENDED', 'True'))
 # -- END Settings for MONITORING plugin
+
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '431448382574-uu629n60ug7oho9b87srm8cqurd8rp1v.apps.googleusercontent.com',
+            'secret': 'RvMgxchAibBDtTDmXUyBAw5Y',
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
