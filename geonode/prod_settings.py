@@ -590,3 +590,5 @@ X_FRAME_OPTIONS = 'ALLOW-FROM %s' % SITEURL
 CORS_ORIGIN_ALLOW_ALL = True
 
 GEOIP_PATH = "/usr/local/share/GeoIP"
+
+ALLOWED_HOSTS = ['signaltech.us']
