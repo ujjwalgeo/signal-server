@@ -480,6 +480,8 @@ INSTALLED_APPS = (
 
     # GeoNode
     'geonode',
+
+    'signalapi',
 )
 
 if 'postgresql' in DATABASE_URL or 'postgis' in DATABASE_URL:

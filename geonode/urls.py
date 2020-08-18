@@ -262,5 +262,6 @@ if settings.MONITORING_ENABLED:
 from signalapi.views import user_info as signal_user_info
 
 urlpatterns += [
+    url(r'signalapi/', include('signalapi.urls')),
     url(r'signalapi/user-info', signal_user_info, name='signal_user_info'),
 ]
