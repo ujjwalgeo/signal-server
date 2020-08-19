@@ -12,6 +12,8 @@ class Category(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
     description = models.CharField(max_length=1000, blank=True, null=True)
     parent = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
+    icon = models.CharField(max_length=100, blank=False, null=False)
+    weight = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
