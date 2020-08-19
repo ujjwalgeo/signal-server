@@ -1,5 +1,5 @@
 from django.contrib import admin
-from signalapi.models import SignalDocBase, Category
+from signalapi.models import SignalDocBase, Category, Collection
 
 
 class SignalDocBaseAdmin(admin.ModelAdmin):
@@ -8,6 +8,10 @@ class SignalDocBaseAdmin(admin.ModelAdmin):
 
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
+
+
+class CollectionAdmin(admin.ModelAdmin):
+    model = Collection
 
 
 admin.site.register(SignalDocBase, SignalDocBaseAdmin)

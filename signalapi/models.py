@@ -25,6 +25,8 @@ class SignalDocBase(models.Model):
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
     chart_html = models.CharField(max_length=5000, blank=True, null=True)
     collection = models.ForeignKey(Collection, null=True, blank=True, on_delete=models.SET_NULL)
+    doc_type = models.CharField(max_length=50, default='file',
+                                choices=(('file', 'File'), ('pdf', 'PDF'), ('chart', 'Chart'), ('none', 'None')))
 
     def __str__(self):
         return self.title
