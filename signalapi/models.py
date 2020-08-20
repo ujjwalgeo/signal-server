@@ -6,6 +6,8 @@ from geonode.people.models import GroupProfile
 class Collection(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
     group = models.ForeignKey(GroupProfile, null=True, blank=True, on_delete=models.SET_NULL)
+    start_date = models.DateTimeField(null=True, blank=True)
+    end_date = models.DateTimeField(null=True, blank=True)
 
 
 class Category(models.Model):
