@@ -1,11 +1,12 @@
 from tastypie.resources import ModelResource
 from tastypie.fields import ForeignKey
-from signalapi.models import SignalDocBase, Category
+from signalapi.models import SignalDocBase, Category, Collection
 from geonode.api.authentication import OAuthAuthentication
 from geonode.api.resourcebase_api import DocumentResource
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from tastypie.serializers import Serializer
+from tastypie.constants import ALL
 
 
 class SignalDocBaseResource(ModelResource):
@@ -15,6 +16,7 @@ class SignalDocBaseResource(ModelResource):
         queryset = SignalDocBase.objects.all()
         resource_name = "signaldoc"
         authentication = OAuthAuthentication()
+        filtering = {"collection": ["exact"], "category": ALL}
 
 
 class CategoryResource(ModelResource):
@@ -28,3 +30,11 @@ class CategoryResource(ModelResource):
         queryset = Category.objects.all()
         resource_name = "category"
         authentication = OAuthAuthentication()
+
+
+class CollectionResource(ModelResource):
+    class Meta:
+        queryset = Collection.objects.all()
+        resource_name = "collection"
+        authentication = OAuthAuthentication()
+        filtering = {"group": ["exact"]}
