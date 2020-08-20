@@ -17,16 +17,6 @@ class CollectionResource(ModelResource):
         filtering = {"group": ["exact"]}
 
 
-class SignalDocBaseResource(ModelResource):
-    doc = ForeignKey(DocumentResource, "doc", full=False)
-    collection = ForeignKey(CollectionResource, "collection", full=True)
-    class Meta:
-        queryset = SignalDocBase.objects.all()
-        resource_name = "signaldoc"
-        authentication = OAuthAuthentication()
-        filtering = {"collection": ["exact"], "category": ALL}
-
-
 class CategoryResource(ModelResource):
     parent = ForeignKey("signalapi.api.CategoryResource", "parent", full=False, null=True)
 
@@ -39,4 +29,15 @@ class CategoryResource(ModelResource):
         resource_name = "category"
         authentication = OAuthAuthentication()
 
+
+class SignalDocBaseResource(ModelResource):
+    doc = ForeignKey(DocumentResource, "doc", full=False)
+    collection = ForeignKey(CollectionResource, "collection", full=True)
+    category = ForeignKey(CategoryResource, "category", full=True)
+
+    class Meta:
+        queryset = SignalDocBase.objects.all()
+        resource_name = "signaldoc"
+        authentication = OAuthAuthentication()
+        filtering = {"collection": ["exact"], "category": ALL}
 
