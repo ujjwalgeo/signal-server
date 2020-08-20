@@ -9,9 +9,17 @@ from tastypie.serializers import Serializer
 from tastypie.constants import ALL
 
 
-class SignalDocBaseResource(ModelResource):
-    doc = ForeignKey(DocumentResource, "doc", full=True)
+class CollectionResource(ModelResource):
+    class Meta:
+        queryset = Collection.objects.all()
+        resource_name = "collection"
+        authentication = OAuthAuthentication()
+        filtering = {"group": ["exact"]}
 
+
+class SignalDocBaseResource(ModelResource):
+    doc = ForeignKey(DocumentResource, "doc", full=False)
+    collection = ForeignKey(CollectionResource, "collection", full=True)
     class Meta:
         queryset = SignalDocBase.objects.all()
         resource_name = "signaldoc"
@@ -32,9 +40,3 @@ class CategoryResource(ModelResource):
         authentication = OAuthAuthentication()
 
 
-class CollectionResource(ModelResource):
-    class Meta:
-        queryset = Collection.objects.all()
-        resource_name = "collection"
-        authentication = OAuthAuthentication()
-        filtering = {"group": ["exact"]}
