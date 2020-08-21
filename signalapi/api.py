@@ -33,7 +33,7 @@ class CategoryResource(ModelResource):
 class SignalDocBaseResource(ModelResource):
     doc = ForeignKey(DocumentResource, "doc", full=True)
     collection = ForeignKey(CollectionResource, "collection", full=False)
-    category = ForeignKey(CategoryResource, "category", full=False)
+    category = ForeignKey(CategoryResource, "category", full=True)
 
     class Meta:
         queryset = SignalDocBase.objects.all()
